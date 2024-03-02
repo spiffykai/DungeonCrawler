@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3216800072550361535}
   - component: {fileID: 2172719685365697617}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9.63}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 39.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2172719685365697617
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 903528815678116672}
   - component: {fileID: 6860906955950615186}
   - component: {fileID: 6480266264769337211}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7351437687340814766}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 3786551144860929332}
   - component: {fileID: 8839374034206487818}
   - component: {fileID: 3543642554065213020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snake
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -403,6 +403,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 2172719685365697617}
+  dropItems:
+  - {fileID: 5656092211909272610, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
+  - {fileID: 8054622063165288128, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
+  dropChances: 6400000064000000
   moveSpeed: 2000
   detectionRadius: 3
   maxHealth: 5
@@ -418,7 +422,7 @@ GameObject:
   - component: {fileID: 1941793098849746818}
   - component: {fileID: 7148903253843305302}
   - component: {fileID: 981766488553837365}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +497,7 @@ GameObject:
   - component: {fileID: 3748259810464991871}
   - component: {fileID: 8240208984566618727}
   - component: {fileID: 3455181119314449176}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

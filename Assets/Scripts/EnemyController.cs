@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour{
 
     [SerializeField] private Slider _healthBar;
-
+    [SerializeField] public GameObject[] dropItems;
+    [SerializeField] public int[] dropChances;
+    
     public float moveSpeed = 3000.0f;
     public float detectionRadius = 3.0f;
     public int maxHealth = 5;
@@ -40,6 +43,12 @@ public class EnemyController : MonoBehaviour{
         health--;
         _healthBar.value = health;
         if (health <= 0){
+            foreach (var item in dropItems){
+                var random = UnityEngine.Random.Range(0, 100);
+                if (random < dropChances[Array.IndexOf(dropItems, item)]){
+                    Instantiate(item, transform.position, Quaternion.identity);
+                }
+            }
             Destroy(gameObject);
         }
     }

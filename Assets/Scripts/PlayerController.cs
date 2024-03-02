@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour{
     public int currentDamage = 1;
     public int health = 10;
     public int maxHealth = 10;
+    public int coins = 0;
     
     private Rigidbody2D _rb;
     public Vector2 _attackDirection;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     private void _Attack(){
-        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position, new Vector2(1, 1), 0, _attackDirection, .8f, LayerMask.GetMask("Default"));
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position, new Vector2(1, 1), 0, _attackDirection, .8f, LayerMask.GetMask("Enemies"));
         foreach (var hitObject in hit){
             if (hitObject.collider != null){
                 if (hitObject.collider.CompareTag("Enemy")){
@@ -81,6 +82,22 @@ public class PlayerController : MonoBehaviour{
                     hitObject.collider.GetComponent<Rigidbody2D>().AddForce(_attackDirection * 1000);
                 }
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.CompareTag("HeartPickup")){
+            health += 2;
+            if (health > maxHealth){
+                health = maxHealth;
+            }
+            _healthBar.value = health;
+            Destroy(other.gameObject);
+        }
+        
+        if (other.gameObject.CompareTag("CoinPickup")){
+            coins++;
+            Destroy(other.gameObject);
         }
     }
 }
