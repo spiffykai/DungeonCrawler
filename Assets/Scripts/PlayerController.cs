@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour{
     [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject attackObject;
-    
+
+    public GameObject mainObject;
     public GameObject weaponPivot;
     
     public float playerSpeed = 4.0f;
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour{
     public void takeDamage(int damage, Vector2 direction){
         health -= damage;
         healthBar.value = health;
-        _rb.AddForce(direction * 1000);
+        _rb.AddForce(direction.normalized * 1000f);
     }
 
     private void _Attack(Vector2 direction){
@@ -118,6 +119,10 @@ public class PlayerController : MonoBehaviour{
         if (other.gameObject.CompareTag("CoinPickup")){
             coins++;
             Destroy(other.gameObject);
+        }
+        
+        if (other.gameObject.CompareTag("Finish")){
+            mainObject.GetComponent<MainScript>().LoadNextLevel();
         }
     }
 }
