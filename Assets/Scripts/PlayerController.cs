@@ -2,13 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour{
+    [SerializeField] private Slider _healthBar;
+    
     public GameObject weaponPivot;
     
     public float playerSpeed = 4.0f;
     public int currentDamage = 1;
-    public int health = 5;
+    public int health = 10;
+    public int maxHealth = 10;
     
     private Rigidbody2D _rb;
     public Vector2 _attackDirection;
@@ -16,6 +20,9 @@ public class PlayerController : MonoBehaviour{
     void Start(){
         _rb = GetComponent<Rigidbody2D>();
         _attackDirection = Vector2.up;
+        
+        _healthBar.maxValue = maxHealth;
+        _healthBar.value = health;
     }
     
     void Update(){
@@ -61,6 +68,7 @@ public class PlayerController : MonoBehaviour{
 
     public void takeDamage(int damage){
         health -= damage;
+        _healthBar.value = health;
         _rb.AddForce(-_attackDirection * 1000);
     }
 
