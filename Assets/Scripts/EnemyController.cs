@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour{
 
     private void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<PlayerController>().takeDamage(1);
+            other.gameObject.GetComponent<PlayerController>().takeDamage(1, GetComponent<Rigidbody2D>().velocity);
         }
     }
 }

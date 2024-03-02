@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour{
-    [SerializeField] private Slider _healthBar;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private GameObject attackObject;
     
     public GameObject weaponPivot;
     
@@ -16,19 +18,32 @@ public class PlayerController : MonoBehaviour{
     public int coins = 0;
     
     private Rigidbody2D _rb;
-    public Vector2 _attackDirection;
+    private Vector2 _attackDirection;
     
     void Start(){
         _rb = GetComponent<Rigidbody2D>();
         _attackDirection = Vector2.up;
         
-        _healthBar.maxValue = maxHealth;
-        _healthBar.value = health;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
     }
     
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Space)){
-            _Attack();
+        //get attack direction based on input
+        if (Input.GetKeyDown(KeyCode.UpArrow)){
+            _Attack(new Vector2(0,1));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.DownArrow)){
+            _Attack(new Vector2(0,-1));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            _Attack(new Vector2(-1,0));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow)){
+            _Attack(new Vector2(1, 0));
         }
     }
     
@@ -67,19 +82,24 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage, Vector2 direction){
         health -= damage;
-        _healthBar.value = health;
-        _rb.AddForce(-_attackDirection * 1000);
+        healthBar.value = health;
+        _rb.AddForce(direction * 1000);
     }
 
-    private void _Attack(){
-        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position, new Vector2(1, 1), 0, _attackDirection, .8f, LayerMask.GetMask("Enemies"));
+    private void _Attack(Vector2 direction){
+        //attackObject.GetComponent<Animator>().SetTrigger("attack");
+        attackObject.transform.position = new Vector2(transform.position.x + direction.x, transform.position.y + direction.y);
+        attackObject.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+        attackObject.GetComponent<Animator>().Play("player_attack", -1, 0f);
+        
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position, new Vector2(1, 1), 0, direction, .8f, LayerMask.GetMask("Enemies"));
         foreach (var hitObject in hit){
             if (hitObject.collider != null){
                 if (hitObject.collider.CompareTag("Enemy")){
                     hitObject.collider.GetComponent<EnemyController>().TakeDamage(currentDamage);
-                    hitObject.collider.GetComponent<Rigidbody2D>().AddForce(_attackDirection * 1000);
+                    hitObject.collider.GetComponent<Rigidbody2D>().AddForce(direction * 1000);
                 }
             }
         }
@@ -91,7 +111,7 @@ public class PlayerController : MonoBehaviour{
             if (health > maxHealth){
                 health = maxHealth;
             }
-            _healthBar.value = health;
+            healthBar.value = health;
             Destroy(other.gameObject);
         }
         

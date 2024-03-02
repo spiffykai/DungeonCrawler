@@ -406,7 +406,7 @@ MonoBehaviour:
   dropItems:
   - {fileID: 5656092211909272610, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
   - {fileID: 8054622063165288128, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-  dropChances: 6400000064000000
+  dropChances: 1400000032000000
   moveSpeed: 2000
   detectionRadius: 3
   maxHealth: 5
@@ -476,8 +476,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b57b1743d2d563d40898c5b13f3b92c4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b57b1743d2d563d40898c5b13f3b92c4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
