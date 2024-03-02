@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour{
     
     public float playerSpeed = 4.0f;
     public int currentDamage = 1;
+    public int health = 5;
     
     private Rigidbody2D _rb;
     public Vector2 _attackDirection;
@@ -56,6 +57,11 @@ public class PlayerController : MonoBehaviour{
             weaponPivot.transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
             weaponPivot.transform.localScale = new Vector3(1, -1, 1);
         }
+    }
+
+    public void takeDamage(int damage){
+        health -= damage;
+        _rb.AddForce(-_attackDirection * 1000);
     }
 
     private void _Attack(){
