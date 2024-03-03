@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
@@ -8,15 +9,13 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour{
     [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject attackObject;
-
+    
     public GameObject mainObject;
     public GameObject weaponPivot;
     
     public float playerSpeed = 4.0f;
-    public int currentDamage = 1;
     public int health = 10;
     public int maxHealth = 10;
-    public int coins = 0;
     
     private Rigidbody2D _rb;
     private Vector2 _attackDirection;
@@ -99,7 +98,7 @@ public class PlayerController : MonoBehaviour{
         foreach (var hitObject in hit){
             if (hitObject.collider != null){
                 if (hitObject.collider.CompareTag("Enemy")){
-                    hitObject.collider.GetComponent<EnemyController>().TakeDamage(currentDamage);
+                    hitObject.collider.GetComponent<EnemyController>().TakeDamage(mainObject.GetComponent<MainScript>().currentDamageLevel);
                     hitObject.collider.GetComponent<Rigidbody2D>().AddForce(direction * 1000);
                 }
             }
@@ -117,7 +116,7 @@ public class PlayerController : MonoBehaviour{
         }
         
         if (other.gameObject.CompareTag("CoinPickup")){
-            coins++;
+            mainObject.GetComponent<MainScript>().AddCoins(1);
             Destroy(other.gameObject);
         }
         

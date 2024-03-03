@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     public void TakeDamage(int damage){
-        health--;
+        health -= damage;
         _healthBar.value = health;
         if (health <= 0){
             foreach (var item in dropItems){
