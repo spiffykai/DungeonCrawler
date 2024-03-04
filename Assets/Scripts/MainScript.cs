@@ -12,7 +12,9 @@ public class MainScript : MonoBehaviour{
     
     public GameObject startingPosition;
     public GameObject player;
-    public GameObject enemyPrefab;
+    public GameObject snakePrefab;
+    public GameObject skeletonPrefab;
+    public GameObject zombiePrefab;
     public GameObject shopPanel;
 
     public TMP_Text coinText;
@@ -24,6 +26,9 @@ public class MainScript : MonoBehaviour{
     
     void Start()
     {
+        //random seed
+        Random.InitState((int)System.DateTime.Now.Ticks);
+        
         LoadNextLevel();    
     }
 
@@ -50,9 +55,30 @@ public class MainScript : MonoBehaviour{
     public void LoadNextLevel(){
         if (ableToLoadNextLevel){
             currentLevel++; 
-            int spawnCount = Random.Range(1, currentLevel * 2);
-            for (int i = 0; i < spawnCount; i++){ 
-                Instantiate(enemyPrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+            float spawnCount = Random.Range(1.0f + currentLevel, currentLevel * 1.5f);
+            spawnCount = Mathf.Round(spawnCount);
+            Debug.Log(spawnCount);
+            for (int i = 0; i < spawnCount; i++){
+                float chance = Random.Range(0, 100);
+                switch (currentLevel){
+                    case >= 8:
+                        if (chance < 50){
+                            Instantiate(skeletonPrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+                        }else{
+                            Instantiate(zombiePrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+                        }
+                        break;
+                    case >= 4:
+                        if (chance < 50){
+                            Instantiate(snakePrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+                        }else{
+                            Instantiate(skeletonPrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+                        }
+                        break;
+                    default: //level 1-3
+                        Instantiate(snakePrefab, new Vector3(Random.Range(-5, 7), Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+                        break;
+                }
                 player.transform.position = startingPosition.transform.position;
             }
         }
@@ -63,7 +89,7 @@ public class MainScript : MonoBehaviour{
             currentDamageLevel++;
             coins -= damageUpgradeCost;
             coinText.text = "Coins: " + coins;
-            damageUpgradeCost += 5;
+            damageUpgradeCost += 3;
             damageUpgradeCostText.text = damageUpgradeCost + "g";
             damageLevelText.text = "Level: " + currentDamageLevel;
         }

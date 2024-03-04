@@ -2674,13 +2674,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c6ff31fa0615a4e8e659dabec684f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
+  currentLevel: 6
   coins: 20
   enemiesSpawned: 0
   ableToLoadNextLevel: 0
   startingPosition: {fileID: 1444233789}
   player: {fileID: 673394545}
-  enemyPrefab: {fileID: 6513581645024256312, guid: 671d98e41eaec514c8a10fb50f303a86, type: 3}
+  snakePrefab: {fileID: 6513581645024256312, guid: 671d98e41eaec514c8a10fb50f303a86, type: 3}
+  skeletonPrefab: {fileID: 6716588200227924967, guid: e81bf9412c58aa94194b40a8aef3bdb0, type: 3}
+  zombiePrefab: {fileID: 788441622420611190, guid: 7a26fc86fbce97e4d99663705499b5b3, type: 3}
   shopPanel: {fileID: 1573981574}
   coinText: {fileID: 540658640}
   currentDamageLevel: 1
@@ -5159,120 +5161,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1653791302803801058
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.837
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273760469892057531, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8054622063165288128, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
-      propertyPath: m_Name
-      value: CoinPickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 91128bdd29de1fa4d8bd42821ed58b72, type: 3}
---- !u!1001 &6448335841543568994
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5656092211909272610, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_Name
-      value: HeartPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269238160574701791, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fa7de7272e56c2e4f96c79ef7751cb9e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5282,8 +5170,6 @@ SceneRoots:
   - {fileID: 1230616857}
   - {fileID: 161679982}
   - {fileID: 208330686}
-  - {fileID: 6448335841543568994}
-  - {fileID: 1653791302803801058}
   - {fileID: 1831335020}
   - {fileID: 2047170950}
   - {fileID: 1444233790}
