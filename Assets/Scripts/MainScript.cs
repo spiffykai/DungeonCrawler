@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour{
-    public int currentLevel = 0;
+    public static int currentLevel = 0;
     public int coins = 0;
     public int enemiesSpawned;
     public bool ableToLoadNextLevel = true;
@@ -18,6 +18,7 @@ public class MainScript : MonoBehaviour{
     public GameObject shopPanel;
 
     public TMP_Text coinText;
+    public TMP_Text levelText;
 
     public int currentDamageLevel = 1;
     public int damageUpgradeCost = 5;
@@ -54,10 +55,19 @@ public class MainScript : MonoBehaviour{
     
     public void LoadNextLevel(){
         if (ableToLoadNextLevel){
-            currentLevel++; 
+            currentLevel++;
+            levelText.text = "Level: " + currentLevel;
+            
+            foreach (GameObject pickup in GameObject.FindGameObjectsWithTag("CoinPickup")){
+                Destroy(pickup);
+            }
+            foreach (GameObject pickup in GameObject.FindGameObjectsWithTag("HeartPickup")){
+                Destroy(pickup);
+            }
+            
             float spawnCount = Random.Range(1.0f + currentLevel, currentLevel * 1.5f);
             spawnCount = Mathf.Round(spawnCount);
-            Debug.Log(spawnCount);
+            //Debug.Log(spawnCount);
             for (int i = 0; i < spawnCount; i++){
                 float chance = Random.Range(0, 100);
                 switch (currentLevel){
@@ -89,9 +99,13 @@ public class MainScript : MonoBehaviour{
             currentDamageLevel++;
             coins -= damageUpgradeCost;
             coinText.text = "Coins: " + coins;
-            damageUpgradeCost += 3;
+            damageUpgradeCost += 2;
             damageUpgradeCostText.text = damageUpgradeCost + "g";
             damageLevelText.text = "Level: " + currentDamageLevel;
         }
+    }
+    
+    public void EndGame(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene");
     }
 }

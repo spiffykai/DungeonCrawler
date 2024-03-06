@@ -86,6 +86,10 @@ public class PlayerController : MonoBehaviour{
         health -= damage;
         healthBar.value = health;
         _rb.AddForce(direction.normalized * 1000f);
+        
+        if (health <= 0){
+            mainObject.GetComponent<MainScript>().EndGame();
+        }
     }
 
     private void _Attack(Vector2 direction){
